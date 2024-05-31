@@ -8,48 +8,92 @@ import studentsData from "./assets/students.json";
 
 function App() {
   const [students, setStudents] = useState(studentsData);
-  const [fullName, setfullName] = useState("")
-  const [image, setImage] = useState("")
-  const [phone, setPhone] = useState()
-  const [email, setEmail] = useState("")
-  const [program, setProgram] = useState("")
-  const [graduationYear, setGraduationYear] = useState(0)
-  const [graduated, setGraduated] = useState(false)
+  const [fullName, setfullName] = useState("");
+  const [image, setImage] = useState("");
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState("");
+  const [program, setProgram] = useState("");
+  const [graduationYear, setGraduationYear] = useState(0);
+  const [graduated, setGraduated] = useState(false);
 
-  const handleFullNameInput = (event) => setfullName(event.target.value)
-  const handleImageInput= (event) => setImage(event.target.value)
-  const handlePhoneInput = (event) => setPhone(event.target.value)
-  const handleEmailInput = (event) => setEmail(event.target.value)
-  const handleProgramInput = (event) => setProgram(event.target.value)
-  const handleGraduationYearInput = (event) => setGraduationYear(event.target.value)
-  const handleGraduatedInput = (event) => setGraduated(event.target.value)
+  const handleFullNameInput = (event) => {
+    setfullName(event.target.value);
+  };
+  const handleImageInput = (event) => {
+    setImage(event.target.value);
+  };
+  const handlePhoneInput = (event) => {
+    setPhone(event.target.value);
+  };
+  const handleEmailInput = (event) => {
+    setEmail(event.target.value);
+  };
+  const handleProgramInput = (event) => {
+    setProgram(event.target.value);
+  };
+  const handleGraduationYearInput = (event) => {
+    setGraduationYear(event.target.value);
+  };
+  const handleGraduatedInput = (event) => {
+    setGraduated(event.target.value);
+  };
+
+  const handleAddStudent = (event) => {
+    event.preventDefault();
+    const newStudent = {fullName, image, phone, email, program, graduationYear, graduated}
+    setStudents([...students, newStudent])
+  };
 
   return (
     <div className="App pt-20">
       <Navbar />
 
       {/* FORM */}
-      <form>
+      <form onSubmit={handleAddStudent}>
         <span>Add a Student</span>
         <div>
           <label>
             Full Name
-            <input name="fullName" type="text" placeholder="Full Name" value={fullName} onChange={handleFullNameInput}/>
+            <input
+              name="fullName"
+              type="text"
+              placeholder="Full Name"
+              value={fullName}
+              onChange={handleFullNameInput}
+            />
           </label>
 
           <label>
             Profile Image
-            <input name="image" type="url" placeholder="Profile Image" value={image} onChange={handleImageInput} />
+            <input
+              name="image"
+              type="url"
+              placeholder="Profile Image"
+              value={image}
+              onChange={handleImageInput}
+            />
           </label>
 
           <label>
             Phone
-            <input name="phone" type="tel" placeholder="Phone" value={phone} onChange={handlePhoneInput} />
+            <input
+              name="phone"
+              type="tel"
+              placeholder="Phone"
+              value={phone}
+              onChange={handlePhoneInput}
+            />
           </label>
 
           <label>
             Email
-            <input name="email" type="email" placeholder="Email" value={email} onChange={handleEmailInput}/>
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={handleEmailInput}
+            />
           </label>
         </div>
 
@@ -74,25 +118,28 @@ function App() {
               maxLength={4}
               min={2023}
               max={2030}
-              value={graduationYear} onChange={handleGraduationYearInput}
+              value={graduationYear}
+              onChange={handleGraduationYearInput}
             />
           </label>
 
           <label>
             Graduated
-            <input name="graduated" type="checkbox" checked={graduated} onChange={handleGraduatedInput} />
+            <input
+              name="graduated"
+              type="checkbox"
+              checked={graduated}
+              onChange={handleGraduatedInput}
+            />
           </label>
 
           <button type="submit">Add Student</button>
         </div>
-
       </form>
       {/* FORM END */}
 
-
       {/* TABLE/LIST HEADER */}
       <TableHeader />
-
 
       {/* STUDENT LIST */}
       {students &&
@@ -104,3 +151,18 @@ function App() {
 }
 
 export default App;
+
+
+
+// {
+//   fullName: "Ian Iverson",
+//   email: "ian.iverson@example.com,
+//   phone: "123-456-7890,
+//   program: "example",
+//   image: """,
+//  ",
+//   graduationYear: 2023,
+//   graduated: true
+
+// https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-cohort-tools-routing/profile-6.png
+//  }
