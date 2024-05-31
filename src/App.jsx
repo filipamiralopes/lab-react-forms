@@ -10,9 +10,9 @@ function App() {
   const [students, setStudents] = useState(studentsData);
   const [fullName, setfullName] = useState("");
   const [image, setImage] = useState("");
-  const [phone, setPhone] = useState();
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [program, setProgram] = useState("");
+  const [program, setProgram] = useState("-- None --");
   const [graduationYear, setGraduationYear] = useState(0);
   const [graduated, setGraduated] = useState(false);
 
@@ -40,8 +40,24 @@ function App() {
 
   const handleAddStudent = (event) => {
     event.preventDefault();
-    const newStudent = {fullName, image, phone, email, program, graduationYear, graduated}
-    setStudents([...students, newStudent])
+    const newStudent = {
+      fullName,
+      image,
+      phone,
+      email,
+      program,
+      graduationYear,
+      graduated,
+    };
+    setStudents([...students, newStudent]);
+    // clear form
+    setfullName("")
+    setImage("")
+    setPhone("")
+    setEmail("")
+    setProgram("-- None --") // select inputs should have the string value of the first option set as the default value (???)
+    setGraduationYear(0)
+    setGraduated(false)
   };
 
   return (
@@ -101,10 +117,10 @@ function App() {
           <label>
             Program
             <select name="program" onChange={handleProgramInput}>
-              <option value={program}>-- None --</option>
-              <option value={program}>Web Dev</option>
-              <option value={program}>UXUI</option>
-              <option value={program}>Data</option>
+              <option value="">-- None --</option>
+              <option value="Web Dev">Web Dev</option>
+              <option value="UXUI">UXUI</option>
+              <option value="Data">Data</option>
             </select>
           </label>
 
@@ -116,7 +132,7 @@ function App() {
               placeholder="Graduation Year"
               minLength={4}
               maxLength={4}
-              min={2023}
+              min={2018}
               max={2030}
               value={graduationYear}
               onChange={handleGraduationYearInput}
@@ -152,17 +168,16 @@ function App() {
 
 export default App;
 
-
-
-// {
-//   fullName: "Ian Iverson",
-//   email: "ian.iverson@example.com,
-//   phone: "123-456-7890,
-//   program: "example",
-//   image: """,
-//  ",
-//   graduationYear: 2023,
-//   graduated: true
-
-// https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-cohort-tools-routing/profile-6.png
-//  }
+/*
+{
+  fullName: "Ian Iverson";
+  email: "ian.iverson@example.com";
+  phone: "123-456-7890";
+  program: "example";
+  image: "
+  https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-cohort-tools-routing/profile-6.png
+  ";
+  graduationYear: 2023;
+  graduated: true;
+ }
+ */
