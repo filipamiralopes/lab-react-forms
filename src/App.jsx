@@ -11,7 +11,7 @@ function App() {
   const [students, setStudents] = useState(studentsData);
 
   const handleAddStudent = (newStudent) => {
-    setStudents([...students, newStudent]);
+    setStudents([newStudent, ...students]);
 
   };
 

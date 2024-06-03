@@ -7,7 +7,7 @@ const AddStudent = ({handleAddStudent}) => {
   const [image, setImage] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [program, setProgram] = useState("-- None --");
+  const [program, setProgram] = useState("");
   const [graduationYear, setGraduationYear] = useState(0);
   const [graduated, setGraduated] = useState(false);
 
@@ -30,7 +30,7 @@ const AddStudent = ({handleAddStudent}) => {
     setGraduationYear(event.target.value);
   };
   const handleGraduatedInput = (event) => {
-    setGraduated(event.target.value);
+    setGraduated(event.target.checked);
   };
 
   function handleSubmit(event) {
@@ -50,7 +50,7 @@ const AddStudent = ({handleAddStudent}) => {
     setImage("");
     setPhone("");
     setEmail("");
-    setProgram("-- None --"); // select inputs should have the string value of the first option set as the default value (???)
+    setProgram(""); // select inputs should have the string value of the first option set as the default value (???)
     setGraduationYear(0);
     setGraduated(false);
   }
@@ -109,7 +109,7 @@ const AddStudent = ({handleAddStudent}) => {
         <div>
           <label>
             Program
-            <select name="program" onChange={handleProgramInput}>
+            <select value={program} name="program" onChange={handleProgramInput}>
               <option value="">-- None --</option>
               <option value="Web Dev">Web Dev</option>
               <option value="UXUI">UXUI</option>
